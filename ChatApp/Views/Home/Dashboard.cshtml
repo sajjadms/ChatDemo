@@ -1,0 +1,81 @@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Dashboard</h2>
+        <canvas id="myLineChart" width="400" height="200"></canvas>
+        <canvas id="myPieChart" width="400" height="200"></canvas>
+    </div>
+
+    <script>
+        // Line Chart
+        var lineCtx = document.getElementById('myLineChart').getContext('2d');
+        var myLineChart = new Chart(lineCtx, {
+            type: 'line', // Line chart
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [{
+                    label: 'Line Dataset',
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Pie Chart
+        var pieCtx = document.getElementById('myPieChart').getContext('2d');
+        var myPieChart = new Chart(pieCtx, {
+            type: 'pie', // Pie chart
+            data: {
+                labels: ['Red', 'Blue', 'Yellow'],
+                datasets: [{
+                    label: 'Pie Dataset',
+                    data: [300, 50, 100],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Pie Chart Example'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
